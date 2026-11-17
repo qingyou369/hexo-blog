@@ -1,28 +1,28 @@
 menu:
-  # 文章:
-  #   隧道: /archives/ || anzhiyu-icon-box-archive
-  #   分类: /categories/ || anzhiyu-icon-shapes
-  #   标签: /tags/ || anzhiyu-icon-tags
-
-  # 友链:
-  #   友人帐: /link/ || anzhiyu-icon-link
-  #   朋友圈: /fcircle/ || anzhiyu-icon-artstation
-  #   留言板: /comments/ || anzhiyu-icon-envelope
-
-  # 我的:
-  #   音乐馆: /music/ || anzhiyu-icon-music
-  #   追番页: /bangumis/ || anzhiyu-icon-bilibili
-  #   相册集: /album/ || anzhiyu-icon-images
-  #   小空调: /air-conditioner/ || anzhiyu-icon-fan
-
-  # 关于:
-  #   关于本人: /about/ || anzhiyu-icon-paper-plane
-  #   闲言碎语: /essay/ || anzhiyu-icon-lightbulb
-  #   随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints1
+    - title: 导航
+      item:
+        - name: 首页
+          link: /
+          icon: anzhiyu-icon-house
+        - name: 归档
+          link: /archives/
+          icon: anzhiyu-icon-box-archive
+        - name: 脐橙专栏
+          link: /tags/赣南脐橙/
+          icon: anzhiyu-icon-apple
+        - name: 分类
+          link: /categories/
+          icon: anzhiyu-icon-shapes
+        - name: 标签
+          link: /tags/
+          icon: anzhiyu-icon-tags
+        - name: 关于我
+          link: /about/
+          icon: anzhiyu-icon-paper-plane
 
 # nav相关配置
 nav:
-  enable: false
+  enable: true
   travelling: false
   clock: false
   menu:
@@ -792,7 +792,10 @@ preloader:
   avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg # 自定加载动画义头像
 
 # aside (侧边栏)
-# --------------------------------------
+  card_announcement:
+    enable: true
+    content: 🍊 宁都赣南脐橙成熟上市，现摘现发！
+
 
 aside:
   enable: true
@@ -1046,37 +1049,38 @@ css_prefix: true
 
 # 首页顶部相关配置
 home_top:
-  enable: true # 开关
-  timemode: date #date/updated
-  title: 生活明朗
-  subTitle: 万物可爱。
-  siteText: anheyu.com
+  enable: true
+  timemode: date
+  title: 赣南脐橙
+  subTitle: 扎根宁都，种好脐橙，折腾技术
+  siteText: 我的果园小站
   category:
-    - name: 前端
-      path: /categories/前端开发/
+    - name: 脐橙专栏
+      path: /categories/脐橙专栏/
+      shadow: var(--anzhiyu-shadow-orange)
+      class: orange
+      icon: anzhiyu-icon-apple
+    - name: 技术折腾
+      path: /categories/技术折腾/
       shadow: var(--anzhiyu-shadow-blue)
       class: blue
-      icon: anzhiyu-icon-dove
-    - name: 大学
-      path: /categories/大学生涯/
-      shadow: var(--anzhiyu-shadow-red)
-      class: red
-      icon: anzhiyu-icon-fire
-    - name: 生活
-      path: /categories/生活日常/
+      icon: anzhiyu-icon-code
+    - name: 随笔记录
+      path: /categories/随笔/
       shadow: var(--anzhiyu-shadow-green)
       class: green
       icon: anzhiyu-icon-book
-  default_descr: 再怎么看我也不知道怎么描述它的啦！
+  default_descr: 自家果园，自然成熟，现摘现发
   swiper:
     enable: false
-    swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css #swiper css依赖
-    swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js #swiper js依赖
+    swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css
+    swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js
   banner:
-    tips: 新品主题
-    title: Theme-AnZhiYu
-    image: https://bu.dusays.com/2023/05/13/645fa3cf90d70.webp
-    link: https://docs.anheyu.com/
+    tips: 🍊 赣南脐橙上新
+    title: 宁都原产地脐橙
+    image: https://放你的果园banner图链接
+    link: /tags/赣南脐橙/
+
 
 # 朋友圈配置
 friends_vue:
