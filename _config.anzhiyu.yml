@@ -1,24 +1,10 @@
 menu:
-    - title: 导航
-      item:
-        - name: 首页
-          link: /
-          icon: anzhiyu-icon-house
-        - name: 归档
-          link: /archives/
-          icon: anzhiyu-icon-box-archive
-        - name: 脐橙专栏
-          link: /tags/赣南脐橙/
-          icon: anzhiyu-icon-apple
-        - name: 分类
-          link: /categories/
-          icon: anzhiyu-icon-shapes
-        - name: 标签
-          link: /tags/
-          icon: anzhiyu-icon-tags
-        - name: 关于我
-          link: /about/
-          icon: anzhiyu-icon-paper-plane
+    首页: / || anzhiyu-icon-house
+    归档: /archives/ || anzhiyu-icon-box-archive
+    资源:
+      工具: /tools/ || anzhiyu-icon-wrench
+      教程: /tutorial/ || anzhiyu-icon-book
+    关于我: /about/ || anzhiyu-icon-user
 
 # nav相关配置
 nav:
