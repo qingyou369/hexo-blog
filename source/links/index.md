@@ -9,5 +9,8 @@ comments: true
 欢迎互换友链，留言提交你的站点信息
 {% endnote %}
 
-{% link 示例站点, shturl.cc/pqyBv, https://xxx.png, 示例描述 %}
+{% link 示例站点, shturl.cc/dJfzQ, https://xxx.png, 示例描述 %}
+{% link 站点1, https://a.com, https://a.png, 站点1简介 %}
+{% link 站点2, https://b.com, https://b.png, 站点2简介 %}
+
 
