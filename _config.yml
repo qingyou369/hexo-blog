@@ -4,12 +4,14 @@
 
 # 站点信息
 title: 极搜
-subtitle: ''
-description: ''
-keywords:
+subtitle:
+description: 赣南脐橙果农,分享AI、短视频引流、Hexo建站实操教程
+keywords: 赣南脐橙,AI绘图,hexo教程,短视频运营,建站
 author: 小橙崽
 language: zh-CN
 timezone: Asia/Shanghai
+theme: anzhiyu
+
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
