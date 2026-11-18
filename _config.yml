@@ -15,7 +15,11 @@ timezone: Asia/Shanghai
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://jisou.dpdns.org/
-permalink: :year/:month/:day/:title/
+# 注释掉原来默认
+# permalink: :year/:month/:day/:title/
+permalink: posts/:nanoid/
+nanoid:
+  length: 8
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -103,3 +107,7 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+
+
+

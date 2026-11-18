@@ -1,8 +1,5 @@
----
 title: MiniMax-H3进阶｜5图5提示词一键生成15秒4K开箱视频
-date: 2026-11-18 15:10:00
-updated: 2026-11-18 15:10:00
-cover: https://www.dmoe.cc/random.php
+cover: 'https://www.dmoe.cc/random.php'
 top_img: false
 tags:
   - AI视频
@@ -15,6 +12,9 @@ description: MiniMax-H3一格代码进阶方案，5张图+5组提示词，直接
 comments: true
 toc: true
 copyright: true
+nanoid: F7NpO7jm
+date: 2026-11-18 15:10:00
+updated: 2026-11-18 15:10:00
 ---
 
 {% note info %}

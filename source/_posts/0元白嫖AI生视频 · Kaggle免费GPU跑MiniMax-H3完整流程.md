@@ -1,9 +1,6 @@
----
 title: 0元白嫖AI生视频 · Kaggle免费GPU跑MiniMax-H3完整流程
-date: 2026-11-18 13:49:00
-updated: 2026-11-18 13:49:00
-cover: https://picsum.photos/800/400
-top_img: https://picsum.photos/1400/450
+cover: 'https://picsum.photos/800/400'
+top_img: 'https://picsum.photos/1400/450'
 tags:
   - AI视频
   - Kaggle
@@ -15,6 +12,9 @@ description: 全程0费用，本地无需安装配置，利用Kaggle免费GPU运
 comments: true
 toc: true
 copyright: true
+nanoid: S8MnBad3
+date: 2026-11-18 13:49:00
+updated: 2026-11-18 13:49:00
 ---
 
 {% note info %}

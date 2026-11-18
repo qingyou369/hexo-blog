@@ -1,8 +1,5 @@
----
 title: 0元白嫖AI生图 · Kaggle免费GPU跑ComfyUI完整流程
-date: 2026-11-18 15:00:00
-updated: 2026-11-18 15:00:00
-cover: https://www.dmoe.cc/random.php
+cover: 'https://www.dmoe.cc/random.php'
 top_img: false
 tags:
   - AI绘图
@@ -15,6 +12,9 @@ description: 全程零费用，本地电脑零配置零安装零翻墙，利用K
 comments: true
 toc: true
 copyright: true
+nanoid: m8xSXavD
+date: 2026-11-18 15:00:00
+updated: 2026-11-18 15:00:00
 ---
 
 {% note info %}
