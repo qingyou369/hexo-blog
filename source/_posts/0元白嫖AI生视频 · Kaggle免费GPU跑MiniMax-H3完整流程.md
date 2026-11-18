@@ -32,8 +32,8 @@ MiniMax-H3 不一样：它支持**视频+音频同步生成，人物嘴型和声
 
 ## 📥 5 个模型下载地址
 
-| 文件 | 大小 | 作用 |下载地址
-| ---- | ---- | ---- |----
+| 文件 | 大小 | 作用 |下载地址|
+| ---- | ---- | ---- |----|
 | MiniMax-H3-Ref2VA-Pruned-Q4_K_M.gguf | 11.56 GB | H3 主模型（视频+音频） |[下载地址](https://huggingface.co/Abiray/MiniMax-H3-Pruned-GGUF/resolve/main/MiniMax-H3-Ref2VA-Pruned-Q4_K_M.gguf)
 | Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-IQ4_XS.gguf | 13.44 GB | 文本编码器 |[下载地址](https://huggingface.co/nif0/Qwen3-VL-32B-Instruct-MiniMax-H3-GGUF/resolve/main/Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-IQ4_XS.gguf)
 | Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-mmproj-BF16.gguf | 1.20 GB | 视觉投影 |[下载地址](https://huggingface.co/nif0/Qwen3-VL-32B-Instruct-MiniMax-H3-GGUF/resolve/main/Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-mmproj-BF16.gguf)
