@@ -26,7 +26,5 @@ copyright: true
 - 列表项1
 - 列表项2
 
-```bash
-# 代码块示例
-hexo clean && hexo s
+
 
