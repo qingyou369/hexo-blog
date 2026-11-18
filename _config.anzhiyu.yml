@@ -4,6 +4,7 @@ menu:
     资源:
       工具: /tools/ || anzhiyu-icon-wrench
       教程: /tutorial/ || anzhiyu-icon-book
+    友链: /links/ || anzhiyu-icon-link
     关于我: /about/ || anzhiyu-icon-user
 
 
@@ -1063,11 +1064,11 @@ home_top:
     swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css
     swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js
   banner:
-    tips: 持续更新
-    title: 资源与教程
-    image: https://bu.dusays.com/2023/05/13/645fa3cf90d70.webp
+    tips: 一起玩转
+    title: 永劫无间
+    image: https://imgbed-446.pages.dev/file/1791938573660_67904a59d0e0a243d4f6536e.webp.png
     link: /tools/
-
+ 
 
 
 # 朋友圈配置

@@ -1,7 +1,7 @@
 ---
 title: 关于我
-date: 2026-11-18 08:35:33
-type: about
+date: 2026-11-18
+# ❗不要写 type: about！！Anzhiyu不需要这个type，写了会空白！
 aside: false
 top_img: false
 comments: true

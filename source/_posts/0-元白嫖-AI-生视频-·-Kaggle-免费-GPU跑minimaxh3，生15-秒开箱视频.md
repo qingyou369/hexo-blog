@@ -18,7 +18,7 @@ updated: 2026-11-18 15:10:00
 ---
 
 {% note info %}
-免费基础版教程：https://blog.zaihouse.com/posts/kaggle-minimax-h3-video/
+免费基础版教程：https://jisou.dpdns.org/posts/S8MnBad3/
 基础版仅支持单段3秒视频，本文为进阶一格代码版本。
 {% endnote %}
 
