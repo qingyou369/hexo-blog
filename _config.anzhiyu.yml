@@ -4,12 +4,11 @@ menu:
     资源:
       工具: /tools/ || anzhiyu-icon-wrench
       教程: /tutorial/ || anzhiyu-icon-book
-    友链: /links/ || anzhiyu-icon-link
     关于我: /about/ || anzhiyu-icon-user
 
 
 # nav相关配置
-nav:s
+nav:
   enable: true
   travelling: false
   clock: false
