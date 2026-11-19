@@ -1,45 +1,38 @@
+# ===================== 通用爬虫 =====================
 User-agent: *
 Allow: /
 
-# OpenAI
+# ===================== 国内搜索引擎 =====================
+User-agent: Baiduspider
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# ===================== AI大模型爬虫（GEO放行，重点） =====================
 User-agent: GPTBot
 Allow: /
 User-agent: OAI-SearchBot
 Allow: /
-
-# Anthropic Claude
+User-agent: ChatGPT-User
+Allow: /
 User-agent: ClaudeBot
 Allow: /
-User-agent: Claude-SearchBot
+User-agent: Claude-Web
 Allow: /
-
-# 字节
 User-agent: Bytespider
 Allow: /
-
-# Perplexity
-User-agent: PerplexityBot
+User-agent: DeepSeekBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot
 Allow: /
 
-# Amazon Q / Alexa
-User-agent: Amazonbot
-Allow: /
+# ===================== 可选：屏蔽不需要抓取的目录（按需开启） =====================
+# Disallow: /search/
+# Disallow: /page/
+# Disallow: /404/
 
-# Common Crawl
-User-agent: CCBot
-Allow: /
-
-# 屏蔽无用路径（按需取舍）
-Disallow: /search/
-Disallow: /*?page=
-Disallow: /draft/
-Disallow: /tmp/
-Disallow: /admin/
-
-# 配套llms.txt给大模型读取
-Allow: /llms.txt
-
-# 站点地图（优先本站，外部sitemap可追加一行）
-Sitemap: shturl.cc/T6ZpbCEllbqzl/sitemap.xml
-Sitemap: shturl.cc/T6ZpbCEllbqzl/sitemap.xml
+# ===================== 站点地图（放在末尾，规范） =====================
+Sitemap: https://jisou.dpdns.org/sitemap.xml
 
