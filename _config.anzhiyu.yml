@@ -1057,6 +1057,11 @@ home_top:
       shadow: var(--anzhiyu-shadow-orange)
       class: red
       icon: anzhiyu-icon-orange
+    - name: 关于我
+      path: /about/
+      shadow: var(--anzhiyu-shadow-red)
+      class: red
+      icon: anzhiyu-icon-user
   default_descr: 工具收集、教程笔记、个人记录
   swiper:
     enable: false
