@@ -7,7 +7,7 @@ tags:
   - ComfyUI
   - MiniMax-H3
 categories:
-  - AI教程
+  - 教程
 description: 全程0费用，本地无需安装配置，利用Kaggle免费GPU运行MiniMax-H3，实现音视频同步口播生成，突破磁盘容量限制。
 comments: true
 toc: true

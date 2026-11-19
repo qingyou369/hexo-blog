@@ -7,7 +7,7 @@ tags:
   - Kaggle
   - ComfyUI
 categories:
-  - AI教程
+  - 教程
 description: MiniMax-H3一格代码进阶方案，5张图+5组提示词，直接输出15秒开箱成片，自带4K放大，自动备份，心跳保活防断连。
 comments: true
 toc: true

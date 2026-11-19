@@ -7,7 +7,7 @@ tags:
   - Kaggle
   - FLUX.1
 categories:
-  - AI教程
+  - 教程
 description: 全程零费用，本地电脑零配置零安装零翻墙，利用Kaggle免费T4×2 GPU运行FLUX.1-Schnell，一键部署ComfyUI出图。
 comments: true
 toc: true
