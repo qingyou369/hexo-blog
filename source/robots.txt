@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# 允许AI大模型爬虫（GEO关键，千万不要Disallow）
+User‑agent: GPTBot
+Allow: /
+User‑agent: Bytespider
+Allow: /
+User‑agent: ClaudeBot
+Allow: /
+
+Sitemap: https://jisou.dpdns.org/sitemap.xml

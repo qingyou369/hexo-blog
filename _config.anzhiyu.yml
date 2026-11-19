@@ -3,9 +3,9 @@ menu:
     归档: /archives/ || anzhiyu-icon-box-archive
     资源:
       工具: /tools/ || anzhiyu-icon-wrench
-      教程: /tutorial/ || anzhiyu-icon-book
+      教程: /tutorial/ || anzhiyu-icon-book  
     关于我: /about/ || anzhiyu-icon-user
-
+    赣南脐橙: /orange/ || anzhiyu-icon-orange
 
 # nav相关配置
 nav:
@@ -15,12 +15,12 @@ nav:
   menu:
     - title: 网页
       item:
-        - name: 博客导航
+        - name: 导航
           link: https://fanwq.dpdns.org/
           icon: /img/favicon.ico
     - title: 项目
       item:
-        - name: 极搜图床
+        - name: 图床
           link: https://imgbed-446.pages.dev/
           icon: https://image.anheyu.com/favicon.ico
 
@@ -513,8 +513,8 @@ footer:
       enable: false
       link: /copyright
     linkList:
-      - link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
-        text: 主题
+      - link: http://fcx.zag9.cn/
+        text: 副业
       # - link: https://image.anheyu.com
       #   text: 图床
       # - link: https://beian.miit.gov.cn/
@@ -1052,11 +1052,11 @@ home_top:
       shadow: var(--anzhiyu-shadow-green)
       class: green
       icon: anzhiyu-icon-book
-    - name: 关于我
-      path: /about/
-      shadow: var(--anzhiyu-shadow-red)
+    - name: 赣南脐橙
+      path: /orange/
+      shadow: var(--anzhiyu-shadow-orange)
       class: red
-      icon: anzhiyu-icon-user
+      icon: anzhiyu-icon-orange
   default_descr: 工具收集、教程笔记、个人记录
   swiper:
     enable: false
@@ -1067,7 +1067,6 @@ home_top:
     title: 永劫无间
     image: https://imgbed-446.pages.dev/file/1791938573660_67904a59d0e0a243d4f6536e.webp.png
     link: /tools/
- 
 
 
 # 朋友圈配置
@@ -1332,3 +1331,5 @@ CDN:
     # ali_iconfont_css:
     # accesskey_js:
     # colorthief:
+sitemap:
+  path: sitemap.xml
