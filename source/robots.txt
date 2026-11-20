@@ -35,4 +35,5 @@ Allow: /
 
 # ===================== 站点地图（放在末尾，规范） =====================
 Sitemap: https://jisou.dpdns.org/sitemap.xml
+Sitemap: https://jisou.dpdns.org/baidusitemap.xml
 

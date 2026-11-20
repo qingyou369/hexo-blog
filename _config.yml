@@ -108,11 +108,3 @@ theme: anzhiyu
 deploy:
   type: ''
 
-# sitemap配置
-sitemap:
-  path: sitemap.xml
-baidusitemap:
-  path: baidusitemap.xml
-
-
-

@@ -1334,3 +1334,17 @@ CDN:
     # accesskey_js:
     # colorthief:
 
+# sitemap配置
+sitemap:
+  path: sitemap.xml
+  template: ./sitemap.xml
+  rel: false
+  tags: true
+  categories: true
+baidusitemap:
+  path: baidusitemap.xml
+
+
+
+
+
