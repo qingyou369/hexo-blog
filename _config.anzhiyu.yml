@@ -585,7 +585,7 @@ google_adsense:
 
 site_verification:
   - name: google-site-verification
-    content: TByfDxqmC81QCUSc1AtCaabImPeS1m5ALA2jbnuZqQ
+    content: TByfDxqmc8lQCUoSc1AtCaabImPeS1m5ALA2jbnuZqM
   - name: baidu-site-verification
     content: code-xxx
   - name: msvalidate.01
