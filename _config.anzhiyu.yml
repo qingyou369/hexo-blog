@@ -589,7 +589,8 @@ site_verification:
   - name: baidu-site-verification
     content: code-xxx
   - name: msvalidate.01
-    content: xxx
+    content: <meta name="google-site-verification" content="TByfDxqmc8lQCUoSc1AtCaabImPeS1m5ALA2jbnuZqM" />
+
 
 # Beautify/Effect (美化/效果)
 # --------------------------------------
