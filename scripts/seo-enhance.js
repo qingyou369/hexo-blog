@@ -82,6 +82,23 @@ function jsonld(obj) {
   return '<script type="application/ld+json">' + escJson(obj) + '</script>';
 }
 
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function iso(d) {
+  try {
+    const t = new Date(d);
+    return isNaN(t.getTime()) ? '' : t.toISOString();
+  } catch (e) {
+    return '';
+  }
+}
+
 function isBadImage(url) {
   return !url || /picsum\.photos|placeholder|\bxxx\b|替换|default\.(jpg|png)$/i.test(url);
 }
@@ -199,14 +216,11 @@ function buildSite(c) {
       '@id': SITE + '/#website',
       url: SITE + '/',
       name: c.brand,
-      description: '赣南脐橙果农 + AI 实操教程博客',
+      description: c.summary || '赣南脐橙果农与 AI 工具实操教程博客',
       inLanguage: c.lang,
-      publisher: { '@id': SITE + '/#organization' },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: { '@type': 'EntryPoint', urlTemplate: SITE + '/search/?q={search_term_string}' },
-        'query-input': 'required name=search_term_string'
-      }
+      publisher: { '@id': SITE + '/#organization' }
+      // 注意：原 potentialAction(SearchAction) 已移除 —— /search/ 线上返回 400，
+      // 保留会触发 Search Console 的"结构化数据无效"警告
     },
     {
       '@context': 'https://schema.org',
@@ -275,19 +289,38 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
     else str += ld;
   }
 
-  // 3. og:image / twitter:image 兜底
+  // 3. og:image / twitter:image：统一换成本站图片（原来首页指向 bu.dusays.com 外链）
   const cover = postCover(page);
+  const ogImg = abs(isPost ? cover : c.default_cover);
   str = str.replace(
     /(<meta\s+property=["']og:image["']\s+content=["'])([^"']*)(["'])/gi,
-    function (m, p1, p2, p3) { return p1 + (/picsum\.photos|xxx|替换/.test(p2) ? cover : p2) + p3; }
+    '$1' + ogImg + '$3'
   );
   str = str.replace(
     /(<meta\s+name=["']twitter:image["']\s+content=["'])([^"']*)(["'])/gi,
-    function (m, p1, p2, p3) { return p1 + (/picsum\.photos|xxx|替换/.test(p2) ? cover : p2) + p3; }
+    '$1' + ogImg + '$3'
   );
-  // 完全没有 og:image 时补一条
   if (!/property=["']og:image["']/i.test(str)) {
-    str = str.replace(/<\/head>/i, '<meta property="og:image" content="' + cover + '">\n</head>');
+    str = str.replace(/<\/head>/i, '<meta property="og:image" content="' + ogImg + '">\n</head>');
+  }
+
+  // 3b. 文章页补 og:type=article 与 article 时间（主题默认输出 website，且没有时间）
+  if (isPost) {
+    str = str.replace(
+      /(<meta\s+property=["']og:type["']\s+content=["'])[^"']*(["'])/i,
+      '$1article$2'
+    );
+    if (!/article:published_time/i.test(str)) {
+      const pub = iso(page.date);
+      const mod = iso(page.updated || page.date) || pub;
+      if (pub) {
+        str = str.replace(
+          /<\/head>/i,
+          '<meta property="article:published_time" content="' + pub + '">\n' +
+          '<meta property="article:modified_time" content="' + mod + '">\n</head>'
+        );
+      }
+    }
   }
 
   // 4. article:tag 用真实标签，而不是站点关键词
@@ -326,18 +359,60 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
     return '<img' + attrs + '>';
   });
 
-  // 7. 重复 H1：把爬虫用的 CrawlerTitle 降级
+  // 7. 删掉主题给爬虫用的隐藏重复标题（与正文 H1 重复声明 headline）
   str = str.replace(
-    /<h1([^>]*id=["']CrawlerTitle["'][^>]*)>/gi,
-    '<div$1 hidden>'
-  ).replace(
-    /(<div[^>]*id=["']CrawlerTitle["'][^>]*>[\s\S]*?)<\/h1>/gi,
-    '$1</div>'
+    /<(?:h1|div)[^>]*id=["']CrawlerTitle["'][^>]*>[\s\S]*?<\/(?:h1|div)>/gi,
+    ''
   );
 
+  // 7b. 首页静态内容：anzhiyu 首页是 JS 渲染，静态 HTML 里没有 H1、没有正文、没有内链，
+  //     百度和 Bing 抓不到内容。补一个可见的站点简介块（含 H1 + 最新文章内链）。
+  if (isHome) {
+    let latest = [];
+    try {
+      latest = hexo.locals.get('posts').toArray().slice(0, 8);
+    } catch (e) { latest = []; }
+    const listHtml = latest.length
+      ? '<ul style="list-style:none;padding:0;margin:14px 0 0">' +
+        latest.map(function (p) {
+          const desc = truncate(strip(p.excerpt || p.content), 120);
+          const cat = (p.categories && p.categories.length) ? names(p.categories).join(' / ') : '';
+          const day = iso(p.date).slice(0, 10);
+          return '<li style="margin:0 0 14px">' +
+            '<a href="' + abs(p.path) + '" style="font-weight:600;color:#1f2328">' + esc(p.title) + '</a>' +
+            '<span style="color:#9aa3af;margin:0 8px;font-size:12px">' + (cat ? esc(cat) + ' · ' : '') + day + '</span>' +
+            '<p style="margin:4px 0 0;color:#5b6470">' + esc(desc) + '</p>' +
+            '</li>';
+        }).join('') + '</ul>' +
+        '<p style="margin:12px 0 0"><a href="' + SITE + '/archives/">查看全部文章 →</a></p>'
+      : '';
+    const intro =
+      '<section class="seo-home-intro" style="max-width:860px;margin:28px auto 0;padding:0 20px;color:#5b6470;font-size:14px;line-height:1.9">' +
+      '<h1 style="font-size:18px;font-weight:700;color:#26282c;margin:0 0 10px">' +
+      esc(c.brand) + '｜赣南脐橙挑选与 AI 实操教程</h1>' +
+      '<p style="margin:0">' +
+      esc(c.summary || '赣南脐橙果农与 AI 工具实操教程博客，记录产地实况与可复现的实操流程。') +
+      ' 江西赣州宁都产地直供，11 月中旬开摘，内容含挑选标准、储存方法、礼盒选购与 AI 工具实操步骤。</p>' +
+      '<p style="margin:8px 0 0">果园在江西赣州宁都，脐橙 11 月中旬开摘、次年 1 月结束。' +
+      '挑选看果径与果皮毛孔，同大小掂重量最准；储存讲通风单层摊放，冰箱冷藏反而失水；' +
+      '礼盒按 75–85mm 果径最稳妥。教程部分只写跑通过的流程，Kaggle 免费 GPU 跑 ComfyUI、' +
+      'MiniMax-H3 与多图生成短视频都有完整步骤与踩坑记录。</p>' +
+      listHtml + '</section>';
+    str = str.replace(/<\/body>/i, intro + '\n</body>');
+  }
+
   // 8. meta description / keywords 去重：主题与主题配置可能各输出一条，统一成唯一一条
-  const metaDesc = page.description
-    ? sanitize(page.description)
+  let pageDesc = page.description;
+  const pPath = String(page.path || '');
+  if (!pageDesc && !isPost && page.title) {
+    if (/^tags\//.test(pPath)) {
+      pageDesc = '「' + page.title + '」标签下的全部文章合集，含产地实录与实操步骤，均由宁都果园作者撰写。';
+    } else if (/^categories\//.test(pPath)) {
+      pageDesc = '「' + page.title + '」分类下的全部文章，按主题整理，便于连续阅读。';
+    }
+  }
+  const metaDesc = pageDesc
+    ? sanitize(pageDesc)
     : (isPost ? truncate(strip(page.excerpt || page.content), 155) : sanitize(hexo.config.description || ''));
   const metaKw = (isPost && page.tags && page.tags.length)
     ? names(page.tags).join(',')
