@@ -585,11 +585,12 @@ google_adsense:
 
 site_verification:
   - name: google-site-verification
-    content: xxx
+    content: TByfDxqmC81QCUSc1AtCaabImPeS1m5ALA2jbnuZqQ
   - name: baidu-site-verification
     content: code-xxx
   - name: msvalidate.01
-    content: <meta name="google-site-verification" content="TByfDxqmc8lQCUoSc1AtCaabImPeS1m5ALA2jbnuZqM" />
+    content: xxx
+
 
 
 # Beautify/Effect (美化/效果)
