@@ -1,6 +1,6 @@
 ---
 title: MiniMax-H3进阶｜5图5提示词一键生成15秒4K开箱视频
-cover: 'https://www.dmoe.cc/random.php'
+cover: "/img/covers/cover-video-5img.webp"
 top_img: false
 tags:
   - AI视频
