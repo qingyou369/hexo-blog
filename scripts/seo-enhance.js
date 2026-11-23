@@ -70,6 +70,10 @@ function truncate(str, n) {
   return str.length > n ? str.slice(0, n - 1) + '…' : str;
 }
 
+function sanitize(str) {
+  return String(str || '').replace(/"/g, '&quot;').replace(/\s+/g, ' ').trim();
+}
+
 function escJson(obj) {
   return JSON.stringify(obj).replace(/<\/script/gi, '<\\/script');
 }
@@ -300,7 +304,18 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
     );
   }
 
-  // 6. 图片懒加载 + 空 alt 兜底（只处理正文及卡片图，不动 preloader）
+  // 6a. 正文占位图替换：picsum / dmoe 随机图统一换成真实封面，避免内容与图不符
+  str = str.replace(
+    /(<img\b[^>]*\bsrc=["'])(https?:\/\/(?:picsum\.photos|www\.dmoe\.cc|api\.dmoe\.cc)[^"']*)(["'])/gi,
+    function (m, p1, p2, p3) { return p1 + cover + p3; }
+  );
+  // 6b. data-src / data-original 懒加载源也一起换
+  str = str.replace(
+    /((?:data-src|data-original)=["'])(https?:\/\/(?:picsum\.photos|www\.dmoe\.cc|api\.dmoe\.cc)[^"']*)(["'])/gi,
+    function (m, p1, p2, p3) { return p1 + cover + p3; }
+  );
+
+  // 6c. 图片懒加载 + 空 alt 兜底（只处理正文及卡片图，不动 preloader）
   let imgIndex = 0;
   str = str.replace(/<img\b([^>]*)>/gi, function (m, attrs) {
     imgIndex += 1;
@@ -320,6 +335,22 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
     '$1</div>'
   );
 
+  // 8. meta description / keywords 去重：主题与主题配置可能各输出一条，统一成唯一一条
+  const metaDesc = page.description
+    ? sanitize(page.description)
+    : (isPost ? truncate(strip(page.excerpt || page.content), 155) : sanitize(hexo.config.description || ''));
+  const metaKw = (isPost && page.tags && page.tags.length)
+    ? names(page.tags).join(',')
+    : sanitize(hexo.config.keywords || '');
+
+  str = str
+    .replace(/<meta\s+name=["']description["'][^>]*>\s*/gi, '')
+    .replace(/<meta\s+name=["']keywords["'][^>]*>\s*/gi, '');
+
+  let headMeta = '';
+  if (metaDesc) headMeta += '<meta name="description" content="' + metaDesc + '">\n';
+  if (metaKw) headMeta += '<meta name="keywords" content="' + metaKw + '">\n';
+  if (headMeta) str = str.replace(/<\/head>/i, headMeta + '</head>');
+
   return str;
 }, 10);
-//（注：内容由AI生成）
