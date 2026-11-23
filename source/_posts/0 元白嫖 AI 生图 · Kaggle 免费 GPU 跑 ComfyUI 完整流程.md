@@ -1,3 +1,4 @@
+---
 title: 0元白嫖AI生图 · Kaggle免费GPU跑ComfyUI完整流程
 cover: 'https://www.dmoe.cc/random.php'
 top_img: false
@@ -15,6 +16,13 @@ copyright: true
 nanoid: m8xSXavD
 date: 2026-11-18 15:00:00
 updated: 2026-11-18 15:00:00
+faq:
+  - q: "Kaggle 上跑 ComfyUI 需要装哪些依赖？"
+    a: "按文中顺序装 ComfyUI 本体和 FLUX 节点，模型文件放 models 目录，装完先跑一次最小工作流确认环境正常。"
+  - q: "模型太大、下载慢或中断怎么办？"
+    a: "用 Kaggle Dataset 提前上传模型再挂载，比在线下载稳定；中断后重新挂载即可，不必重下。"
+  - q: "免费 GPU 被回收会不会丢工作流？"
+    a: "会。工作流要存成 json 放到 Output 或本地，会话回收后重新导入，避免从头搭节点。"
 ---
 faq:
   - q: "Kaggle 上跑 ComfyUI 需要装哪些依赖？"
@@ -23,6 +31,7 @@ faq:
     a: "用 Kaggle Dataset 提前上传模型再挂载，比在线下载稳定；中断后重新挂载即可，不必重下。"
   - q: "免费 GPU 被回收会不会丢工作流？"
     a: "会。工作流要存成 json 放到 Output 或本地，会话回收后重新导入，避免从头搭节点。"
+---
 
 {% note info %}
 本文配套完整代码+工作流，全程不花一分钱。本地电脑无需安装任何软件，无需翻墙。

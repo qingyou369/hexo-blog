@@ -110,8 +110,19 @@ theme: anzhiyu
 deploy:
   type: ''
 
+# ---------------- Feed ----------------
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 200
+  autodiscover: true
 
-
-
-
-
+seo_enhance:
+  contact: "/about/"
+  summary: "赣南脐橙果农与 AI 工具实操教程博客，记录产地实况与可复现的实操流程。"
+  brand: 极搜
+  author: 小橙崽
+  author_url: /about/
