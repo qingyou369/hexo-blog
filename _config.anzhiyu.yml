@@ -219,7 +219,7 @@ post_copyright:
   enable: true
   decode: false
   author_href:
-  location: 长沙
+  location: ganzhou
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
   avatarSinks: false # hover时头像下沉
@@ -781,7 +781,7 @@ preloader:
 # aside (侧边栏)
   card_announcement:
     enable: true
-    content: 🍊宁都赣南脐橙｜现摘现发，多汁香甜，欢迎选购！
+    content: 宁都赣南脐橙｜现摘现发，多汁香甜，欢迎选购！
 
 
 aside:
@@ -1238,7 +1238,7 @@ dynamicEffect:
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-    - <meta name="description" content="工具教程笔记，江西宁都赣南脐橙现摘现发，正宗赣南脐橙">
+    - <meta name="description" content="工具教程笔记，江西赣南脐橙宁都现摘现发，正宗赣南脐橙">
     - <meta name="keywords" content="赣南脐橙,宁都脐橙,脐橙,教程,工具,hexo">
     # 自定义css
     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
