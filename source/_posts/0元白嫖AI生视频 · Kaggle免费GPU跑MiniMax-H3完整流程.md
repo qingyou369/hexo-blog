@@ -25,6 +25,11 @@ faq:
   - q: "运行报显存不足怎么办？"
     a: "先降分辨率与帧数，再关掉并行和缓存优化；仍报错说明会话已被回收，重开 Notebook 重新分配 GPU。"
 ---
+
+<!-- ANSWER-FIRST -->
+> **一句话结论**：MiniMax-H3 可以在 Kaggle 的免费 GPU 上跑通文生视频，重点是控制分辨率和时长，避免显存不足中途中断；想先要画面素材，可以先用 ComfyUI 出图再喂给视频模型。
+<!-- /ANSWER-FIRST -->
+
 faq:
   - q: "Kaggle 免费 GPU 能跑 MiniMax-H3 吗，需要多少显存？"
     a: "可以跑。按文中配置关闭梯度并启用半精度即可；显存不足时优先降分辨率和生成时长，而不是换卡。"
@@ -198,3 +203,12 @@ A：不支持，需要电脑操作 Kaggle Notebook。
 {% note warning %}
 免责声明：教程仅用于学习。0 元不等于无限制，Kaggle 存在速率、额度限制；模型版权许可需要使用者自行确认，商用请提前核查。
 {% endnote %}
+
+<!-- RELATED-LINKS -->
+## 延伸阅读
+
+<ul style="line-height:2;">
+<li><a href="/posts/kaggle-comfyui-flux1/">Kaggle 跑 ComfyUI 生图</a> —— 先把图和显卡环境跑通</li>
+<li><a href="/posts/5tu-15miao-shipin/">5 图 15 秒视频流程</a> —— 多图分镜的进阶用法</li>
+</ul>
+<!-- /RELATED-LINKS -->
