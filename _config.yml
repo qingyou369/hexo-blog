@@ -22,7 +22,7 @@ nanoid:
   length: 8
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_index: false
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
@@ -121,6 +121,9 @@ feed:
   autodiscover: true
 
 seo_enhance:
+  sameAs:
+    - https://v.douyin.com/OGqhc3KEOJE/
+    - https://github.com/qingyou369
   contact: "/about/"
   summary: "赣南脐橙果农与 AI 工具实操教程博客，记录产地实况与可复现的实操流程。"
   brand: 极搜

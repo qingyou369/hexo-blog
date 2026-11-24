@@ -4,3 +4,7 @@ node_modules/
 .deploy_git/
 EOF
 db.json
+
+*.bak
+*.cover.bak
+*.fm.bak
