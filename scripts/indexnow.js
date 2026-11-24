@@ -1,78 +1,110 @@
-/**
- * scripts/indexnow.js
- * 部署完成后自动向 IndexNow（Bing / Yandex / Naver 等）提交 URL。
- * IndexNow 提交后 Bing 通常 10 分钟–2 小时收录，而 ChatGPT Search / Copilot 的检索池来自 Bing。
+/*!
+ * indexnow.js —— IndexNow 主动推送（Bing / Yandex / Seznam 秒级收录）
  *
- * 准备：
- *  1. 随便生成一个 32 位十六进制 key，例如：
- *     node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"
- *  2. _config.yml：
- *     seo_enhance:
- *       indexnow:
- *         key: 你的32位key
- *         enabled: true
- *  3. 本脚本会自动发布 /<key>.txt 校验文件，无需手动上传。
+ * 两件事：
+ *   1) 生成站点根目录的 key 文件：/<KEY>.txt（内容是 KEY 本身），用于证明站点归属
+ *   2) 每次 hexo generate 完成后，把全站 URL 推送给 https://api.indexnow.org/indexnow
+ *
+ * 放在仓库根目录 scripts/ 下。Cloudflare Pages 构建时会自动执行。
+ * 想临时关闭：设置环境变量 INDEXNOW_DISABLE=1
  */
 
 'use strict';
 
 const https = require('https');
-const SITE = (hexo.config.url || '').replace(/\/+$/, '');
-const IN = (hexo.config.seo_enhance && hexo.config.seo_enhance.indexnow) || {};
-const KEY = IN.key || '';
 
-hexo.extend.generator.register('indexnow_key', function () {
-  if (!KEY) return [];
-  return [{ path: KEY + '.txt', data: KEY }];
+const KEY = '2b392000db016e65781ad8141d5dd62a';
+const KEY_PATH = KEY + '.txt';
+const ENDPOINT_HOST = 'api.indexnow.org';
+const ENDPOINT_PATH = '/indexnow';
+
+// 额外页（不在 posts 里但值得收录的）
+const EXTRA_PATHS = ['about/', 'orange/', 'tutorial/', 'archives/', 'tags/', 'categories/'];
+
+/* ---------- 1. 生成 key 文件 ---------- */
+hexo.extend.generator.register('indexnow_keyfile', function () {
+  return [{
+    path: KEY_PATH,
+    data: KEY
+  }];
 });
 
-function submit(urls) {
-  return new Promise(function (resolve) {
-    const body = JSON.stringify({
-      host: SITE.replace(/^https?:\/\//, ''),
-      key: KEY,
-      keyLocation: SITE + '/' + KEY + '.txt',
-      urlList: urls
-    });
-    const req = https.request(
-      {
-        hostname: 'api.indexnow.org',
-        path: '/indexnow',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Content-Length': Buffer.byteLength(body)
-        },
-        timeout: 10000
-      },
-      function (res) {
-        let data = '';
-        res.on('data', function (d) { data += d; });
-        res.on('end', function () {
-          hexo.log.info('[indexnow] HTTP %s %s', res.statusCode, data.slice(0, 120));
-          resolve();
-        });
-      }
-    );
-    req.on('timeout', function () { req.destroy(); resolve(); });
-    req.on('error', function (e) {
-      hexo.log.warn('[indexnow] 提交失败：%s', e.message);
-      resolve();
-    });
-    req.write(body);
-    req.end();
+/* ---------- 2. 构建完成后推送 ---------- */
+function postJSON(payload, cb) {
+  const body = JSON.stringify(payload);
+  const req = https.request({
+    host: ENDPOINT_HOST,
+    path: ENDPOINT_PATH,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Content-Length': Buffer.byteLength(body)
+    },
+    timeout: 8000
+  }, function (res) {
+    let data = '';
+    res.on('data', function (c) { data += c; });
+    res.on('end', function () { cb(null, res.statusCode, data); });
   });
+  req.on('error', function (e) { cb(e); });
+  req.on('timeout', function () { req.destroy(); cb(new Error('timeout')); });
+  req.write(body);
+  req.end();
 }
 
-hexo.on('deployAfter', function () {
-  if (!IN.enabled || !KEY) return;
-  const urls = [];
-  hexo.locals.get('posts').sort('-updated').limit(50).forEach(function (p) {
-    const path = (p.path || '').replace(/index\.html$/, '');
-    urls.push(SITE + '/' + path);
+hexo.extend.filter.register('after_generate', function () {
+  if (process.env.INDEXNOW_DISABLE === '1') {
+    hexo.log.info('[indexnow] 已通过环境变量关闭');
+    return;
+  }
+
+  const base = String(hexo.config.url || '').replace(/\/+$/, '');
+  if (!/^https?:\/\//.test(base)) {
+    hexo.log.warn('[indexnow] site url 未配置，跳过推送');
+    return;
+  }
+
+  const urls = [base + '/'];
+  const seen = new Set(urls);
+
+  function push(u) {
+    if (!u || seen.has(u)) return;
+    seen.add(u);
+    urls.push(u);
+  }
+
+  // 文章
+  const posts = hexo.locals.get ? hexo.locals.get('posts') : null;
+  if (posts && posts.forEach) {
+    posts.forEach(function (p) {
+      let path = String(p.path || '');
+      path = path.replace(/index\.html$/i, '');
+      push(base + '/' + path.replace(/^\/+/, ''));
+    });
+  }
+
+  // 固定页
+  EXTRA_PATHS.forEach(function (p) { push(base + '/' + p); });
+
+  if (urls.length < 2) {
+    hexo.log.warn('[indexnow] 没取到 URL 列表，跳过');
+    return;
+  }
+
+  const payload = {
+    host: base.replace(/^https?:\/\//, ''),
+    key: KEY,
+    keyLocation: base + '/' + KEY_PATH,
+    urlList: urls.slice(0, 10000)
+  };
+
+  hexo.log.info('[indexnow] 准备推送 ' + payload.urlList.length + ' 条 URL');
+
+  postJSON(payload, function (err, code, body) {
+    if (err) {
+      hexo.log.warn('[indexnow] 推送失败（不影响构建）：' + err.message);
+      return;
+    }
+    hexo.log.info('[indexnow] 推送完成，HTTP ' + code + (body ? ' ' + String(body).slice(0, 120) : ''));
   });
-  if (!urls.length) return;
-  hexo.log.info('[indexnow] 提交 %s 条 URL', urls.length);
-  submit(urls);
 });
-//（注：内容由AI生成）
