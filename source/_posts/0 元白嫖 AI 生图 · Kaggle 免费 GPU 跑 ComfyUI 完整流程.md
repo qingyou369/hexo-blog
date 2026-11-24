@@ -25,6 +25,11 @@ faq:
   - q: "免费 GPU 被回收会不会丢工作流？"
     a: "会。工作流要存成 json 放到 Output 或本地，会话回收后重新导入，避免从头搭节点。"
 ---
+
+<!-- ANSWER-FIRST -->
+> **一句话结论**：不用本地显卡：在 Kaggle 的免费 GPU 上装好 ComfyUI，按步骤加载模型就能出图，全流程可复现。
+<!-- /ANSWER-FIRST -->
+
 faq:
   - q: "Kaggle 上跑 ComfyUI 需要装哪些依赖？"
     a: "按文中顺序装 ComfyUI 本体和 FLUX 节点，模型文件放 models 目录，装完先跑一次最小工作流确认环境正常。"
@@ -150,3 +155,12 @@ A：不可以，必须用电脑打开Kaggle Notebook网页端。
 免责声明：本教程仅限技术学习使用。
 零费用不等于无限制，Kaggle存在网络限速与GPU时长配额；商用前请仔细核对模型开源许可协议，一切商业风险由使用者自行承担。
 {% endnote %}
+
+<!-- RELATED-LINKS -->
+## 延伸阅读
+
+<ul style="line-height:2;">
+<li><a href="/posts/kaggle-minimax-h3/">Kaggle 跑 MiniMax-H3 生视频</a> —— 同一套免费 GPU 思路</li>
+<li><a href="/posts/5tu-15miao-shipin/">5 图 15 秒视频流程</a> —— 出图之后怎么用</li>
+</ul>
+<!-- /RELATED-LINKS -->

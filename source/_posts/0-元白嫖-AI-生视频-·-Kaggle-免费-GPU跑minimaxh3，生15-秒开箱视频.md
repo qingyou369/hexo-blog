@@ -25,6 +25,13 @@ faq:
   - q: "免费额度用完了还能继续生成吗？"
     a: "Kaggle 单次会话有 GPU 时长上限，跑满后需重新开新会话；提示词和参数先存进 Notebook，换会话直接续跑。"
 ---
+
+
+
+<!-- ANSWER-FIRST -->
+> **一句话结论**：把 5 张分镜图按时间顺序串成一条 15 秒视频，关键在于每张图的构图连续性和首尾帧对齐。
+<!-- /ANSWER-FIRST -->
+
 faq:
   - q: "5 张图怎么分工才能生成 15 秒视频？"
     a: "首尾两帧定动作起点与终点，其余三张做中段关键帧过渡，提示词按画面顺序逐条对应，模型才会按时间轴连贯推演。"
@@ -78,5 +85,11 @@ https://tools.zaihouse.com/downloads/h3-5clips-README.txt —— Dataset上传�
 Kaggle服务器可直连HuggingFace，Notebook内拉取无需翻墙；推荐电脑本地下载完成后再上传Dataset。本教程仅用于学习，商用前核对模型许可协议。
 {% endnote %}
 
+<!-- RELATED-LINKS -->
+## 延伸阅读
 
-
+<ul style="line-height:2;">
+<li><a href="/posts/kaggle-minimax-h3/">MiniMax-H3 生视频</a> —— 单段视频的生成方式</li>
+<li><a href="/posts/kaggle-comfyui-flux1/">ComfyUI 生图流程</a> —— 分镜图从哪来</li>
+</ul>
+<!-- /RELATED-LINKS -->
