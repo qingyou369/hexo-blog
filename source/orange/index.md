@@ -49,10 +49,10 @@ https://xxx替换脐橙果实实拍.webp
 {% endfolding %}
 
 ## 📝专栏文章列表
-- [宁都赣南脐橙成熟采摘现场记录](/posts/xxx)
-- [赣南脐橙挑选避坑指南，教你怎么选甜橙子](/posts/xxx)
-- [赣南脐橙吃法与储存进阶技巧](/posts/xxx)
-- [赣南脐橙礼盒送礼攻略｜怎么选、适合送谁、避坑要点](/posts/xxx)
+- [宁都赣南脐橙成熟采摘现场记录](/posts/gannan-qicheng-caizhai-jilu/)
+- [赣南脐橙挑选避坑指南，教你怎么选甜橙子](/posts/gannan-qicheng-tiaoxuan-bikeng/)
+- [赣南脐橙吃法与储存进阶技巧](/posts/gannan-qicheng-chifa-yuchucun/)
+- [赣南脐橙礼盒送礼攻略｜怎么选、适合送谁、避坑要点](/posts/gannan-qicheng-lihe-songli/)
 
 {% note success %}
 想要了解脐橙价格、发货时间、礼盒定制，可在评论区留言咨询🍊
