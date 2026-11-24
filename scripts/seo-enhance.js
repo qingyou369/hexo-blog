@@ -65,6 +65,15 @@ function strip(html) {
     .trim();
 }
 
+function cleanDesc(text) {
+  let t = strip(String(text || ''));
+  t = t.replace(/^[\s\-—>#*\/"'“]*一?句?话?结论[\s*]*[：:]\s*/, '');
+  t = t.split(/faq[\s:：]/)[0];
+  t = t.split(/keywords[\s:：]/)[0];
+  t = t.replace(/\s+/g, ' ').trim();
+  return t;
+}
+
 function truncate(str, n) {
   if (!str) return '';
   return str.length > n ? str.slice(0, n - 1) + '…' : str;
@@ -375,7 +384,7 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
     const listHtml = latest.length
       ? '<ul style="list-style:none;padding:0;margin:14px 0 0">' +
         latest.map(function (p) {
-          const desc = truncate(strip(p.excerpt || p.content), 120);
+          const desc = truncate(cleanDesc(p.description || p.excerpt || p.content), 120);
           const cat = (p.categories && p.categories.length) ? names(p.categories).join(' / ') : '';
           const day = iso(p.date).slice(0, 10);
           return '<li style="margin:0 0 14px">' +
@@ -397,7 +406,13 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
       '挑选看果径与果皮毛孔，同大小掂重量最准；储存讲通风单层摊放，冰箱冷藏反而失水；' +
       '礼盒按 75–85mm 果径最稳妥。教程部分只写跑通过的流程，Kaggle 免费 GPU 跑 ComfyUI、' +
       'MiniMax-H3 与多图生成短视频都有完整步骤与踩坑记录。</p>' +
-      listHtml + '</section>';
+      '<div style="display:flex;gap:12px;margin:16px 0 6px;flex-wrap:wrap">' +
+      '<a href="' + SITE + '/orange/" style="flex:1;min-width:220px;padding:14px 16px;border-radius:10px;background:#fff8f0;border:1px solid #f1ddc8;text-decoration:none;color:#8a4a26;font-weight:600;font-size:14px">赣南脐橙专栏' +
+      '<span style="display:block;font-weight:400;font-size:12px;color:#9a7b62;margin-top:5px;line-height:1.6">挑选 · 储存 · 礼盒 · 采摘实录，附果径分级表与实测区间</span></a>' +
+      '<a href="' + SITE + '/tutorial/" style="flex:1;min-width:220px;padding:14px 16px;border-radius:10px;background:#fff8f0;border:1px solid #f1ddc8;text-decoration:none;color:#8a4a26;font-weight:600;font-size:14px">AI 工具实操' +
+      '<span style="display:block;font-weight:400;font-size:12px;color:#9a7b62;margin-top:5px;line-height:1.6">Kaggle 免费 GPU · ComfyUI 生图 · MiniMax 生视频</span></a>' +
+      '</div>' +
+            listHtml + '</section>';
     str = str.replace(/<\/body>/i, intro + '\n</body>');
   }
 
@@ -413,7 +428,7 @@ hexo.extend.filter.register('after_render:html', function (str, data) {
   }
   const metaDesc = pageDesc
     ? sanitize(pageDesc)
-    : (isPost ? truncate(strip(page.excerpt || page.content), 155) : sanitize(hexo.config.description || ''));
+    : (isPost ? truncate(cleanDesc(page.excerpt || page.content), 155) : sanitize(hexo.config.description || ''));
   const metaKw = (isPost && page.tags && page.tags.length)
     ? names(page.tags).join(',')
     : sanitize(hexo.config.keywords || '');
