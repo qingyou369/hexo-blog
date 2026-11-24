@@ -1,5 +1,6 @@
 ---
 title: 0元白嫖AI生图 · Kaggle免费GPU跑ComfyUI完整流程
+permalink: posts/kaggle-comfyui-flux1/
 cover: "/img/covers/cover-kaggle-comfyui.webp"
 top_img: false
 tags:

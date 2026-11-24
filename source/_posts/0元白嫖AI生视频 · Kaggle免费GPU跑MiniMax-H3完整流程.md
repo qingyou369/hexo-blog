@@ -1,5 +1,6 @@
 ---
 title: 0元白嫖AI生视频 · Kaggle免费GPU跑MiniMax-H3完整流程
+permalink: posts/kaggle-minimax-h3/
 cover: "/img/covers/cover-kaggle-minimax.webp"
 top_img: 'https://picsum.photos/1400/450'
 tags:

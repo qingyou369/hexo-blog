@@ -1,5 +1,6 @@
 ---
 title: MiniMax-H3进阶｜5图5提示词一键生成15秒4K开箱视频
+permalink: posts/5tu-15miao-shipin/
 cover: "/img/covers/cover-video-5img.webp"
 top_img: false
 tags:
@@ -34,7 +35,7 @@ faq:
 ---
 
 {% note info %}
-免费基础版教程：https://jisou.dpdns.org/posts/S8MnBad3/
+免费基础版教程：https://jisou.dpdns.org/posts/kaggle-minimax-h3/
 基础版仅支持单段3秒视频，本文为进阶一格代码版本。
 {% endnote %}
 
