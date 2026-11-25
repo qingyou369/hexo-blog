@@ -53,6 +53,7 @@ https://xxx替换脐橙果实实拍.webp
 - [赣南脐橙挑选避坑指南，教你怎么选甜橙子](/posts/gannan-qicheng-tiaoxuan-bikeng/)
 - [赣南脐橙吃法与储存进阶技巧](/posts/gannan-qicheng-chifa-yuchucun/)
 - [赣南脐橙礼盒送礼攻略｜怎么选、适合送谁、避坑要点](/posts/gannan-qicheng-lihe-songli/)
+- [赣南脐橙、湖南脐橙、湖北脐橙怎么区分](/posts/gannan-vs-hunan-hubei-orange/)
 
 {% note success %}
 想要了解脐橙价格、发货时间、礼盒定制，可在评论区留言咨询🍊
