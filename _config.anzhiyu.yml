@@ -513,8 +513,8 @@ footer:
       enable: false
       link: /copyright
     linkList:
-      - link: http://fcx.zag9.cn/
-        text: 副业
+      - link: /links/
+        text: 其他站点
       # - link: https://image.anheyu.com
       #   text: 图床
       # - link: https://beian.miit.gov.cn/
