@@ -115,3 +115,5 @@ nanoid: uxyqmODC
 <li><a href="/posts/gannan-qicheng-chifa-yuchucun/">吃法与储存进阶技巧</a> —— 买到手之后能放多久</li>
 </ul>
 <!-- /RELATED-LINKS -->
+
+> 本文作者在宁都自家果园种赣南脐橙。想了解规格、价格与发货，看[购买说明](/buy/)；果园实拍在[赣南脐橙专栏](/orange/)。
