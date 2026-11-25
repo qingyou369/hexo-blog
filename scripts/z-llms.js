@@ -86,7 +86,7 @@ hexo.extend.generator.register('llms-txt', function (locals) {
   });
   lines.push('- [文章归档](' + abs('archives/') + ')：按发布时间浏览全部 ' + total +
     ' 篇文章，含赣南脐橙产地记录与 AI 工具实操教程。');
-  lines.push('- [分类](' + abs('categories/') + ')：按主题分类浏览，含赣南脐橙、赣南脐橙专栏、教程三类，便于连续阅读。');
+  lines.push('- [分类](' + abs('categories/') + ')：按主题分类浏览，含赣南脐橙与教程两类，便于连续阅读。');
   lines.push('- [标签](' + abs('tags/') + ')：按标签浏览文章合集，含赣南脐橙挑选、储存、礼盒送礼、AI 绘图、AI 视频、Kaggle 免费算力等主题。');
   lines.push('');
 
